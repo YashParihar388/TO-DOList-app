@@ -1,6 +1,8 @@
-import express from 'express';
-import path,{ dirname } from 'path';
-import { fileURLToPath } from 'url';
+import express from 'express';//for json middleware parsing
+import path,{ dirname } from 'path';//for front end communication 
+import { fileURLToPath } from 'url';//same
+import authRoutes from './routes/authRoutes.js';//for routes
+import todoRoutes from './routes/todoRoutes.js';//for routes
 
 
 
@@ -14,8 +16,17 @@ const __filename = fileURLToPath(import.meta.url);
 //get directory name 
 const __dirname = dirname(__filename);
 
+//middleware
+app.use(express.json()); //to parse JSON bodies
+
 //middleware to parse JSON bodies
 app.use(express.static(path.join(__dirname,'../public')))//../ means go one level up from src to chapter_3
+
+
+//routes
+app.use('/auth',authRoutes)
+app.use('/todos',todoRoutes)
+
 
 app.get('/',(req,res) => {
     res.sendFile(path.join(__dirname,'public', 'index.html'));//to fetch the index.html file from public folder
