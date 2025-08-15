@@ -1,26 +1,44 @@
-import express from 'express';
-import db from '../db.js';
+import express from 'express'
+import db from '../db.js'
 
-const router = express.Router();
+const router = express.Router()
 
-// to get all todos
+// Get all todos for logged-in user
 router.get('/', (req, res) => {
-    // Add your logic here
-});
+    const getTodos = db.prepare('SELECT * FROM todos WHERE user_id = ?')
+    const todos = getTodos.all(req.userId)
+    res.json(todos)
+})
 
-// to create a new todo
+// Create a new todo
 router.post('/', (req, res) => {
-    // Add your logic here
-});
+    const { task } = req.body
+    const insertTodo = db.prepare(`INSERT INTO todos (user_id, task) VALUES (?, ?)`)
+    const result = insertTodo.run(req.userId, task)
 
-// to update a todo
+    res.json({ id: result.lastInsertRowid, task, completed: 0 })
+})
+
+// Update a todo
 router.put('/:id', (req, res) => {
-    // Add your logic here
-});
+    const { completed } = req.body
+    const { id } = req.params
+    const { page } = req.query
 
-// to delete a todo
+    const updatedTodo = db.prepare('UPDATE todos SET completed = ? WHERE id = ?')
+    updatedTodo.run(completed, id)
+
+    res.json({ message: "Todo completed" })
+})
+
+// Delete a todo
 router.delete('/:id', (req, res) => {
-    // Add your logic here
-});
+    const { id } = req.params
+    const userId = req.userId
+    const deleteTodo = db.prepare(`DELETE FROM todos WHERE id = ? AND user_id = ?`)
+    deleteTodo.run(id, userId)
+    
+    res.send({ message: "Todo deleted" })
+})
 
-export default router;
+export default router

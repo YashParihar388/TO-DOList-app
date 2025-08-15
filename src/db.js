@@ -1,23 +1,23 @@
-import { DatabaseSync } from 'node:sqlite';
-const db=new DatabaseSync(':memory:'); // Use an in-memory database for testing
+import { DatabaseSync } from 'node:sqlite'
+const db = new DatabaseSync(':memory:')
 
+// Execute SQL statements from strings
 db.exec(`
-    CREATE TABLE users(
+    CREATE TABLE users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        UserName TEXT UNIQUE ,
-        Password TEXT
-        )`
-    );
+        username TEXT UNIQUE,
+        password TEXT
+    )
+`)
 
 db.exec(`
-    CREATE TABLE todos(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    UserId INTEGER,
-    task TEXT,
-    Completed BOOLEAN DEFAULT 0,
-    FOREIGN KEY(UserId) REFERENCES users(id)
-    )`
-);
+    CREATE TABLE todos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        task TEXT,
+        completed BOOLEAN DEFAULT 0,
+        FOREIGN KEY(user_id) REFERENCES users(id)
+    )    
+`)
 
-export default db;
-
+export default db
