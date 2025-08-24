@@ -6,10 +6,31 @@
 
 generator client {
   provider = "prisma-client-js"
+<<<<<<< HEAD
   output   = "../src/generated/prisma"
+=======
+>>>>>>> 36c03da279efe3eafd799ca433ddc2a8f9ab12b2
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+<<<<<<< HEAD
+=======
+
+model User {
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
+  password  String
+  todos     Todo[]
+}
+
+model Todo {
+  id        Int       @id @default(autoincrement())
+  task      String
+  completed Boolean   @default(false)
+  userId    Int   
+  user      User      @relation(fields: [userId], references: [id])
+}
+>>>>>>> 36c03da279efe3eafd799ca433ddc2a8f9ab12b2

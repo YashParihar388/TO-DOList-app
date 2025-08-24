@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
+  "name": "chapter_4",
+  "version": "1.0.0",
+  "description": "a full stack to do application that usesDockerised express, spostgreSql,prisma ORM and jwt authentication",
+=======
   "name": "chapter_3",
   "version": "1.0.0",
   "description": "a full stack to do application that uses express, sqlite and jwt authentication",
+>>>>>>> e842a4b8d9d05fbfd328276a9e46ccc54fe1864c
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -12,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "@prisma/client": "^6.14.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
@@ -28,4 +35,21 @@
     "url": "https://github.com/YashParihar388/TO-DOList-app/issues"
   },
   "homepage": "https://github.com/YashParihar388/TO-DOList-app#readme"
+=======
+<<<<<<< HEAD
+    "@prisma/client": "^6.14.0",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
+    "prisma": "^6.14.0"
+=======
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+>>>>>>> e842a4b8d9d05fbfd328276a9e46ccc54fe1864c
+  }
+>>>>>>> 36c03da279efe3eafd799ca433ddc2a8f9ab12b2
 }
